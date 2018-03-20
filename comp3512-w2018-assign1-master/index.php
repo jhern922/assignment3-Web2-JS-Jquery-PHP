@@ -19,7 +19,12 @@
     <?php include 'includes/header.inc.php';?>
     <!-- Page Content -->
     <main class="container-fluid" id ="addMargin">
-        <div class="col-sm-8 col-md-offset-3" id="marginBottom">
+        <div class="col-md-2 col-md-offset-1" id="move">
+            <img src="/comp3512-w2018-assign1-master/images/userpp2.png" class="img-responsive" id="myown" />
+            <br>
+            <h5>Select an Option:</h5>
+        </div>
+        <div class="col-sm-8 " id="marginBottom">
         <div class="item tm1">
             <a href="browse-countries.php"><img src="/comp3512-w2018-assign1-master/images/misc/home_countries.jpg"></a>
             <p>Browse Countries</p>

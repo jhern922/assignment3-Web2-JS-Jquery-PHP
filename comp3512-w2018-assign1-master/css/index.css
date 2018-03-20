@@ -92,3 +92,8 @@ body::-webkit-scrollbar-thumb{
     border-radius: 50%;
     background-color: #FFF;
 }
+
+img#myown{
+	max-height: 50% !important;
+	max-width: 50% !important; 
+}
