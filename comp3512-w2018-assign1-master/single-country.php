@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/bootstrap-theme.css" />    
     <link rel="stylesheet" href="css/myown.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/comp3512-w2018-assign1-master/imgPreview.js" type="text/javascript"></script>
+    <script src="/comp3512-w2018-assign1-master/previewImage.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -55,6 +55,9 @@
             <div>
                 <iframe src='https://en.wikipedia.org/wiki/<?php echo $row['CountryName']; ?>' height="1000"></iframe>
             </div>
+        </div>
+        <div id="hArea">
+            
         </div>
     </main>
     <?php include 'includes/footer.inc.php'; ?>
