@@ -1,5 +1,6 @@
 <?php
     include 'includes/config.inc.php';
+    include 'includes/favoriteListFunctions.inc.php';
     $imagesDB = new ImagesGateway($connection);
     $DBGateway = $imagesDB;
     if(!isset($_COOKIE['Success'])) { header("location: login.php"); } 
@@ -20,8 +21,11 @@
        }
        if(isset($_GET['favorite']) && !empty($_GET['favorite']) && $_GET['favorite'] == 1)
        {
-           //this will not check whether or not there are duplicate favorites
-        array_push($_SESSION['imageFavList'], array('ID'=>$row['ImageID'],'Title'=>$row['Title'],'Path'=>$row['Path']));
+          $itemAlreadyFavorited = checkItem('imageFavList', $row['ImageID']);
+          if(!$itemAlreadyFavorited)
+          {
+            array_push($_SESSION['imageFavList'], array('ID'=>$row['ImageID'],'Title'=>$row['Title'],'Path'=>$row['Path']));
+          }
        }
     }
 ?>
@@ -51,6 +55,9 @@
     </div>
     <div class="alert alert-danger collapse" role="alert" id="failureAlert">
           This feature has not been added yet... 
+    </div>
+    <div class="alert alert-danger collapse" role="alert" id="alreadyInFavorites">
+          This item is already in favorites!
     </div>
      <!-- div alerts end -->
         <div class="row">

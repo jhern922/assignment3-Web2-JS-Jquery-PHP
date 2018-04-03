@@ -42,6 +42,8 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" type='text/css'>
     <link rel="stylesheet" href="css/as2.min.css" />
     <link rel="stylesheet"  href="css/bootstrap-theme.css"/>
+    <script src="jquery.js"></script>
+    <script src="js/checkout.js"></script>
 </head>
 
 <body>
@@ -68,6 +70,7 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                            <p class="pull-right">
                             <a href="favorites-list.php?removeImage=<?php echo $row['ID'];?>"class="btn btn-danger btn-sm">Remove from favorites</a>
                         </p>
+                        <hr>
           <?php } 
           
         } ?>
@@ -88,16 +91,59 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                        <p class="pull-right">
                             <a href="favorites-list.php?removePost=<?php echo $row['ID'];?>"class="btn btn-danger btn-sm">Remove from favorites</a>
                         </p>
+                        <hr>
           <?php }
          }
        ?>
               </div>
         </div>
        </div>
-    </main>
+       <a href="#"class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Print Favorites</a>
+                           </main>
     <?php include 'includes/footer.inc.php'; ?>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
-
+   <div class="modal fade" id="myModal" style="z-index: 9999;" role="dialog">
+           <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <h4 class="modal-title">Print Favorites</h4>
+                       </div>
+                       <div class="modal-body">
+                           <table>
+                               <tr>
+                                   <th></th>
+                                   <th></th>
+                                   <th>Size</th>
+                                   <th>Paper</th>
+                                   <th>Frame</th>
+                                   <th>Quantity</th>
+                                   <th>Total</th>
+                               </tr>
+                           <?php  foreach($_SESSION['imageFavList'] as $row){ ?>
+                           <tr>
+                           <td><h6><?php echo $row['Title'];?></h6></td>
+                           
+                               <td>
+                           <a href="single-image.php?id=<?php echo $row['ID'];?>"><img src="images/square-small/<?php echo $row['Path'];?>" alt='<?php echo $row['Title'];?>'></a>
+                               </td>
+                           <form>
+                           <td><select name="size" class="sizeDropdown"></select></td>
+                           <td><select name="size" class="stockDropdown"></select></td>
+                           <td><select name="size" class="frameDropdown"></select></td>
+                           <td><input type="number"></td>
+                           <td><p class="total">$$$$$</p></td>
+                           </form>
+                           </tr>
+                        <?php } ?>
+                           </table>
+                       </div>
+                       <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                       </div>
+               </div>
+           </div>
+    </div>
 </html>

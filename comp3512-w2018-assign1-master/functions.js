@@ -20,3 +20,8 @@ var faveButton = document.getElementById('favItem');
 if(faveButton){
 faveButton.addEventListener("click",function(){showDiv('successAlert');});}
 }); 
+
+
+function showItemAlreadyInFavoritesAlert(){
+     document.getElementById('alreadyInFavorites').classList.remove('collapse');
+}

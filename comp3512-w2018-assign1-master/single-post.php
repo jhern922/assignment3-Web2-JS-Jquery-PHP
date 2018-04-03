@@ -21,7 +21,11 @@
        }
        if(isset($_GET['favorite']) && !empty($_GET['favorite']) && $_GET['favorite'] == 1)
        {
+          $itemAlreadyFavorited = checkItem('postFavList', $row['ImageID']);
+          if(!$itemAlreadyFavorited)
+          {
            array_push($_SESSION['postFavList'], array('ID'=>$_GET['id'],'Title'=>$row['Title'],'Path'=>$row['Path']));
+          }
        }
     }
 ?>
@@ -94,7 +98,7 @@
       </a>
     </div><!-- Carousel end -->
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                                  <div class="btn-group" role="group">
+                            <div class="btn-group" role="group">
                               <a href="single-post.php?id=<?php echo $_GET['id'];?>&favorite=1"><button type='button' id='favItem' class='btn btn-default'><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
                             </div>
                             <div class="btn-group" role="group">
