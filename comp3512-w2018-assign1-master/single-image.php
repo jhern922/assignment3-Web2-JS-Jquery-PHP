@@ -56,9 +56,6 @@
     <div class="alert alert-danger collapse" role="alert" id="failureAlert">
           This feature has not been added yet... 
     </div>
-    <div class="alert alert-danger collapse" role="alert" id="alreadyInFavorites">
-          This item is already in favorites!
-    </div>
      <!-- div alerts end -->
         <div class="row">
              <?php include 'includes/left.inc.php'; ?>

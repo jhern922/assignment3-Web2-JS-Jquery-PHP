@@ -169,6 +169,7 @@ h2,h3{page-break-after:avoid}
 .glyphicon-random:before{content:"\e110"}
 .glyphicon-comment:before{content:"\e111"}
 .glyphicon-magnet:before{content:"\e112"}
+.md-frm {width: 65%}
 .glyphicon-chevron-up:before{content:"\e113"}
 .glyphicon-chevron-down:before{content:"\e114"}
 .glyphicon-retweet:before{content:"\e115"}

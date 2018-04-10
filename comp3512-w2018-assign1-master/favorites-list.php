@@ -42,6 +42,7 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" type='text/css'>
     <link rel="stylesheet" href="css/as2.min.css" />
     <link rel="stylesheet"  href="css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="css/myown.css" />
     <script src="jquery.js"></script>
     <script src="js/checkout.js"></script>
 </head>
@@ -98,6 +99,7 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
               </div>
         </div>
        </div>
+       <!--!MAKE SURE TO HANDLE WHEN LIST IS EMPTY AND USER CLICKS PRINT -->
        <a href="#"class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Print Favorites</a>
                            </main>
     <?php include 'includes/footer.inc.php'; ?>
@@ -105,42 +107,60 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
    <div class="modal fade" id="myModal" style="z-index: 9999;" role="dialog">
-           <div class="modal-dialog modal-lg">
+           <div class="modal-dialog modal-md">
                <div class="modal-content">
                    <div class="modal-header">
                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                        <h4 class="modal-title">Print Favorites</h4>
                        </div>
                        <div class="modal-body">
-                           <table>
-                               <tr>
-                                   <th></th>
-                                   <th></th>
-                                   <th>Size</th>
-                                   <th>Paper</th>
-                                   <th>Frame</th>
-                                   <th>Quantity</th>
-                                   <th>Total</th>
-                               </tr>
+                           <?php $i = 0; ?>
                            <?php  foreach($_SESSION['imageFavList'] as $row){ ?>
-                           <tr>
-                           <td><h6><?php echo $row['Title'];?></h6></td>
-                           
-                               <td>
-                           <a href="single-image.php?id=<?php echo $row['ID'];?>"><img src="images/square-small/<?php echo $row['Path'];?>" alt='<?php echo $row['Title'];?>'></a>
-                               </td>
-                           <form>
-                           <td><select name="size" class="sizeDropdown"></select></td>
-                           <td><select name="size" class="stockDropdown"></select></td>
-                           <td><select name="size" class="frameDropdown"></select></td>
-                           <td><input type="number"></td>
-                           <td><p class="total">$$$$$</p></td>
+                           <div class="float-right">
+                           <form class="total_Prices">
+                               <h6><?php echo $row['Title'];?></h6>
+                               <a href="single-image.php?id=<?php echo $row['ID'];?>"><img src="images/square-small/<?php echo $row['Path'];?>" alt='<?php echo $row['Title'];?>'></a></br>
+                               <br>
+                               <div class="float-right">
+                               <div class="float-left">
+                               <label for="id_select">Select Size: </label>
+                               <div class="md-frm pull-right"><select id="id_select" name="size" class="sizeDropdown"></select></div>
+                               </div>
+                               <div class="float-left">
+                               <label for="id_select2">Select Stock: </label>
+                               <div class="md-frm pull-right"><select id="id_select2" name="size" class="stockDropdown"></select></div>
+                               </div>
+                               <div class="float-left">
+                               <label for="id_select3">Select Frame Color: </label>
+                               <div class="md-frm pull-right"><select id="id_select3" name="size" class="frameDropdown"></select></div>
+                               </div>
+                               <div class="float-left">
+                               <label for="id_inp">Enter Quantity: </label>
+                               <div class="md-frm pull-right"><input id="id_inp" title="Enter a quantity to see the price!" type="number"></div>
+                               </div>
+                               <div class="float-left"><br>
+                               <label for="id_res">Price: </label>
+                               <div class="md-frm pull-right">$  <input type="number" class="input" id=<?php echo "total_price_amount$i";?> readonly="readonly" value="0.00"/></div>
+                               </div>
                            </form>
-                           </tr>
-                        <?php } ?>
-                           </table>
+                           </div>
+                           <hr>
+                        <?php $i++; } ?>
                        </div>
                        <div class="modal-footer">
+                           <form class="final prices">
+                               <label for="total_p">Total Price: </label>
+                               $  <input id="total_p"  type="number" readonly="readonly" value="0"><br>
+                               <input id="stand" type="radio" name="shipping" value="standard" checked="checked">  Standard Shipping <br>
+                               <input id="expr" type="radio" name="shipping" value="express">  Express Shipping <br>
+                               <p class="warning_text"> *    Change an item quantity to change the shipping prices<br>Shipping costs are determined by your order</p>
+                               <label for="total_shp">Shipping Cost: </label>
+                               $  <input id="total_shp"  type="number" readonly="readonly" value="5"><br>
+                               <label for="total_shhp">Grand Total: </label>
+                               $  <input id="total_shhp"  type="number" readonly="readonly" value="0"><br>
+                           </form>
+                           
+                           
                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                        </div>
                </div>

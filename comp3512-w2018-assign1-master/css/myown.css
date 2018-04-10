@@ -71,3 +71,6 @@ iframe {
    width: 100%;
    height: 400px;
  }
+ .warning_text {
+     color: #FF0000;
+ }
