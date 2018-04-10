@@ -99,8 +99,9 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
               </div>
         </div>
        </div>
-       <!--!MAKE SURE TO HANDLE WHEN LIST IS EMPTY AND USER CLICKS PRINT -->
+            <?php if(isset($_SESSION['imageFavList']) && !empty($_SESSION['imageFavList'])){?>
        <a href="#"class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Print Favorites</a>
+            <?php  } ?>
                            </main>
     <?php include 'includes/footer.inc.php'; ?>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>

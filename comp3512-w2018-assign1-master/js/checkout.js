@@ -1,19 +1,22 @@
 $(function(){
-    $.get("js/printRules.json") // still need to change this because we need to use web-service
+    var url = "https://assignment-3-jhern922.c9users.io/comp3512-w2018-assign1-master/print-services.php";
+    //$.get("js/printRules.json") //still need to change this because we need to use web-service
+   $.get(url)
     .done(function(data){
+        data = $.parseJSON(data);
         var sizeList = $(".sizeDropdown");
         var stockList = $(".stockDropdown");
         var frameList = $(".frameDropdown");
-        sizeOptions = data['sizes'];
-        sizeLen = sizeOptions.length;
-        stockOptions = data['stock'];
-        stockLen = stockOptions.length;
-        frameOptions = data['frame'];
-        frameLen = frameOptions.length;
-        shippingOptions = data['shipping'];
-        totalSum = 0;
-        framesInOrder = [];
-        std_default = true
+         sizeOptions = data['sizes'];
+         sizeLen = sizeOptions.length;
+         stockOptions = data['stock'];
+         stockLen = stockOptions.length;
+         frameOptions = data['frame'];
+         frameLen = frameOptions.length;
+         shippingOptions = data['shipping'];
+         totalSum = 0;
+         framesInOrder = [];
+         std_default = true
         for(let i=0; i<data['sizes'].length; i++){
         var optionItem = $("<option></option>");
         optionItem.html(""+data['sizes'][i]['name']);
@@ -31,6 +34,9 @@ $(function(){
         optionItem.html(""+data['frame'][i]['name']);
         frameList.append(optionItem);
         }
+    })
+    .fail( function(){ //this is just for Randy if he tries to enter a wrong URL in the for the .get
+        alert("Oooops something wrong happened to the retrieval of JSON from " + url);
     });
     
     $('.total_Prices').each(function(i, obj) {

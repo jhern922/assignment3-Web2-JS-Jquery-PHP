@@ -96,7 +96,7 @@
                         </div>
                         <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                              <a href="single-image.php?id=<?php sleep(5); echo $row['ImageID'];?>&favorite=1"><button type='button' id='favItem' class='btn btn-default'><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
+                              <a href="single-image.php?id=<?php sleep(3); echo $row['ImageID'];?>&favorite=1"><button type='button' id='favItem' class='btn btn-default'><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" id='futureBtn'  class="btn btn-default"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>
