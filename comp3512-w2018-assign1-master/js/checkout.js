@@ -33,13 +33,16 @@ $(function(){
         optionItem.html(""+data['frame'][i]['name']);
         frameList.append(optionItem);
         }
+        
+        $('#standardShipping').html(shippingOptions[0]["name"] + " shipping");
+        $('#expressShipping').html(shippingOptions[1]["name"] + " shipping");
     })
     .fail( function(){ //this is just for Randy if he tries to enter a wrong URL in the for the .get
         alert("Oooops something wrong happened to the retrieval of JSON from " + url);
     });
     
-    $('.total_Prices').each(function(i, obj) {
-        $(this).find('#id_inp').change(function() {
+    $('.total_Prices').each(function(i, obj) { //changes on dropdown doesn't fire up change event
+        $(this).find('#id_inp','#id_select','#id_select2','#id_select3').change(function() { //waits until the quantity is changed before the calculation starts
             var standard;
             var express;
             var finalShip;
@@ -49,8 +52,14 @@ $(function(){
             var sizeIndex = $('.sizeDropdown option').index(size);
             sizeIndex = sizeIndex - (i * sizeLen);
             var sizePrice = sizeOptions[sizeIndex]['cost'];
-            if(sizeIndex <= 1) { var stockSize = 'small_cost'; }
-            else { var stockSize = 'large_cost';  }
+            if(sizeIndex <= 1) 
+            { 
+                var stockSize = 'small_cost'; 
+            }
+            else 
+            { 
+                var stockSize = 'large_cost';  
+            }
             var stocks = $('.stockDropdown').find('option:selected');
             var stock = stocks[i];
             var stockIndex = $('.stockDropdown option').index(stock);
@@ -66,24 +75,68 @@ $(function(){
             var quant =  $(this).val();
             var orderItemTotal = ((Number(sizePrice) + Number(stockPrice) + Number(framePrice)) * Number(quant));
             var orderTotal = $('#total_price_amount'+i).val();
-            if (orderTotal == 0) { totalSum += orderItemTotal; }
-            else { totalSum = totalSum - orderTotal; totalSum += orderItemTotal; }
-            if (itemFrames == "None") {framesInOrder[i] =  0;}
-            else if (itemFrames != "None") {framesInOrder[i] =  quant;}
+            
+            
+            if (orderTotal == 0) 
+            { 
+                totalSum += orderItemTotal; 
+                
+            }
+            else 
+            { 
+            totalSum = totalSum - orderTotal; totalSum += orderItemTotal; 
+            }
+            
+            
+            if (itemFrames == "None") 
+            {
+            framesInOrder[i] =  0;
+            }
+            else if (itemFrames != "None") 
+            {
+            framesInOrder[i] =  quant;
+            }
             argsString = framesInOrder.join("+");
             var fr_tot = eval(argsString);
-            if (fr_tot == 0) { standard = shippingOptions[0]["rules"]["none"]; express = shippingOptions[1]["rules"]["none"];}
-            else if (fr_tot < 10 ) { standard = shippingOptions[0]["rules"]["under10"]; express = shippingOptions[1]["rules"]["under10"];}
-            else if (fr_tot >= 10) { standard = shippingOptions[0]["rules"]["over10"]; express = shippingOptions[1]["rules"]["over10"];}
-            if (totalSum >= 100) { standard = 0; }
-            if (totalSum >= 300) { express = 0; }
-            alert("The price of standard shipping is: " + standard + " The price of express shipping is: " + express + " FRAMES COUNT: " + fr_tot);
-            if($('#stand').is(':checked')) {finalShip = standard; }
-            if($('#expr').is(':checked')) {finalShip = express; }
+            
+            if (fr_tot == 0) { 
+            standard = shippingOptions[0]["rules"]["none"]; 
+            express = shippingOptions[1]["rules"]["none"];
+            }
+            else if (fr_tot < 10 ) 
+            { 
+            standard = shippingOptions[0]["rules"]["under10"]; 
+            express = shippingOptions[1]["rules"]["under10"];
+            }
+            else if (fr_tot >= 10) 
+            { 
+            standard = shippingOptions[0]["rules"]["over10"]; 
+            express = shippingOptions[1]["rules"]["over10"];
+            }
+            
+            if (totalSum >= 100) 
+            { 
+            standard = 0; 
+            }
+            if (totalSum >= 300) 
+            { 
+            express = 0; 
+            }
+            //alert("The price of standard shipping is: " + standard + " The price of express shipping is: " + express + " FRAMES COUNT: " + fr_tot);
+            if($('#stand').is(':checked')) 
+            {
+            finalShip = standard; 
+            }
+            if($('#expr').is(':checked')) 
+            {
+            finalShip = express; 
+            }
             $('#total_shp').val(finalShip);
-            $('#total_price_amount'+i).val(orderItemTotal);
+            $('#total_price_amount'+i).html("$"+orderItemTotal);
             $('#total_p').val(totalSum);
+            
             grandTotal();
+            
             $("#expr").on("click" , function () {
                 finalShip = express;
                 $('#total_shp').val(finalShip);
@@ -94,6 +147,7 @@ $(function(){
                 $('#total_shp').val(finalShip);
                 grandTotal();
             });
+            
             function grandTotal() {
                 var val1 = $('#total_p').val();
                 var val2 = $('#total_shp').val();
