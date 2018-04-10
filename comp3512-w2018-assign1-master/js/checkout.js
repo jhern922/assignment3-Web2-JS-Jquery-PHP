@@ -1,7 +1,6 @@
 $(function(){
     var url = "https://assignment-3-jhern922.c9users.io/comp3512-w2018-assign1-master/print-services.php";
-    //$.get("js/printRules.json") //still need to change this because we need to use web-service
-   $.get(url)
+   $.get(url) //by default .get is asynchronous 
     .done(function(data){
         data = $.parseJSON(data);
         var sizeList = $(".sizeDropdown");
