@@ -13,6 +13,7 @@ $(function(){
          frameOptions = data['frame'];
          frameLen = frameOptions.length;
          shippingOptions = data['shipping'];
+         freeThresholds = data['freeThresholds'];
          totalSum = 0;
          framesInOrder = [];
          std_default = true
@@ -42,7 +43,7 @@ $(function(){
     });
     
     $('.total_Prices').each(function(i, obj) { 
-        $(this).find('.printSpecs').change(function() { //instead of id '#id_inp' change it will be everything
+        $(this).find('.printSpecs').change(function() { //instead of id '#id_inp' on change is attached to class
             var standard;
             var express;
             var finalShip;
@@ -72,22 +73,20 @@ $(function(){
             frameIndex = frameIndex - (i * frameLen);
             var frameCosts = frameOptions[frameIndex]['costs'];
             var framePrice = frameCosts[sizeIndex];
-            //var quant =  $(this).val();
-            var quant =  $('#id_inp').val();
+            var quant =  $('#id_inp'+i).val();
             var orderItemTotal = ((Number(sizePrice) + Number(stockPrice) + Number(framePrice)) * Number(quant));
-            var orderTotal = $('#total_price_amount'+i).val();
+            $('#total_price_amount'+i).html("$"+orderItemTotal);
+            calculateSubTotal();
             
-            
-            if (orderTotal == 0) 
-            { 
-                totalSum += orderItemTotal; 
-                
+            //this function will calculate and print the subtotal
+            function calculateSubTotal() {
+             totalSum = 0;
+               $('.total_Prices').each(function(i, obj) { 
+                    totalSum = Number(totalSum) + Number($('#total_price_amount'+i).html().replace("$",''));
+               });
+                $('#total_p').val(totalSum);
             }
-            else 
-            { 
-            totalSum = totalSum - orderTotal; totalSum += orderItemTotal; 
-            }
-            
+           
             
             if (itemFrames == "None") 
             {
@@ -97,6 +96,7 @@ $(function(){
             {
             framesInOrder[i] =  quant;
             }
+            
             argsString = framesInOrder.join("+");
             var fr_tot = eval(argsString);
             
@@ -115,26 +115,25 @@ $(function(){
             express = shippingOptions[1]["rules"]["over10"];
             }
             
-            if (totalSum >= 100) 
+            if (totalSum >= freeThresholds[0]["amount"])  //freeThreshold[0]["name"] == standard
             { 
             standard = 0; 
             }
-            if (totalSum >= 300) 
+            if (totalSum >= freeThresholds[1]["amount"]) //freeThreshold[0]["name"] == express
             { 
             express = 0; 
             }
-            //alert("The price of standard shipping is: " + standard + " The price of express shipping is: " + express + " FRAMES COUNT: " + fr_tot);
-            if($('#stand').is(':checked')) 
+            
+            if($('#stand').is(':checked'))  //standard delivery
             {
             finalShip = standard; 
             }
-            if($('#expr').is(':checked')) 
+            if($('#expr').is(':checked')) //express delivery
             {
             finalShip = express; 
             }
             $('#total_shp').val(finalShip);
-            $('#total_price_amount'+i).html("$"+orderItemTotal);
-            $('#total_p').val(totalSum);
+
             
             grandTotal();
             

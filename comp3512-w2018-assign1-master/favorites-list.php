@@ -143,7 +143,7 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                                
                                <div class="float-left">
                                <label for="id_inp">Quantity: </label>
-                               <div class="md-frm pull-right"><input class="printSpecs" id="id_inp" title="Enter a quantity to see the price!" type="number" min="0" placeholder="0"></div>
+                               <div class="md-frm pull-right"><input class="printSpecs" id="id_inp<?php echo $i; ?>" title="Enter a quantity to see the price!" type="number" min="0" placeholder="0"></div>
                                </div>
                         </div>
                                </td>
@@ -157,23 +157,21 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                            </form>
                             
                            <hr>
-                        <?php $i++; } ?>
                        </div>
+                       <?php $i++; } ?>
                        <div class="modal-footer">
                            <form class="final prices">
-                               <label for="total_p">Total Price: </label>
+                               <label for="total_p">Subtotal: </label>
                                $  <input id="total_p"  type="number" readonly="readonly" value="0"><br>
                                <input id="stand" type="radio" name="shipping" value="standard" checked="checked"><span id='standardShipping'></span> <br>
                                <input id="expr" type="radio" name="shipping" value="express"><span id='expressShipping'></span> <br>
-                               <p class="warning_text"> *    Change an item quantity to change the shipping prices<br>Shipping costs are determined by your order</p>
                                <label for="total_shp">Shipping Cost: </label>
                                $  <input id="total_shp"  type="number" readonly="readonly" value="5"><br>
                                <label for="total_shhp">Grand Total: </label>
                                $  <input id="total_shhp"  type="number" readonly="readonly" value="0"><br>
                            </form>
                            
-                           
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           <button type="button" class="btn-lg btn-success" data-dismiss="modal">Order</button>
                      </div>
                </div>
            </div>

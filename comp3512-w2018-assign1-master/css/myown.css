@@ -103,9 +103,6 @@ td{
     color: white;
 }
 
-/*
-th{
-  padding: 0em 3em 0em 1em;
+#total_shhp, #total_shp, #total_p{
+    border: none;
 }
-
-*/
