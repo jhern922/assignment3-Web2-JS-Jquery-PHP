@@ -31,6 +31,7 @@ session_start();
     <main class="container">
             <div class="jumbotron">
               <h1 class="display-3">Order Summary</h1>
+                    <p class="lead">Your order below has been successful! </p>
             </div>
               <table>
                         <tr>
@@ -59,7 +60,7 @@ session_start();
                         </div>
                     <?php $counter++; } ?>
                         <tr>
-                            <td colspan='5'><h4><?php echo ucfirst($_POST['shipping']);?> Shipping</h4></td>
+                            <td colspan='5'><h4>Delivery will be delivered via: <?php echo ucfirst($_POST['shipping']);?> Shipping</h4></td>
                         </tr>
               </table>
         
