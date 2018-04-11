@@ -27,7 +27,7 @@
         <!-- Start jumbotron -->
         <div class="jumbotron">
               <h1 class="display-3">About Us</h1>
-                  <p class="lead">This assignment was created by Lewis Furlan-Lowry and John Hernandez. It was created as the second assignment for COMP 3512.</p>
+                  <p class="lead">This assignment was created by Lewis Furlan-Lowry and John Hernandez. It was created as the third assignment for COMP 3512.</p>
                       <hr class="my-4">
                         <h3 class="display-3">External Resources used</h3>
                         <div class="panel panel-info">

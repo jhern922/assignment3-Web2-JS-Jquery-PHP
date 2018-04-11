@@ -20,18 +20,21 @@ $(function(){
         for(let i=0; i<data['sizes'].length; i++){
         var optionItem = $("<option></option>");
         optionItem.html(""+data['sizes'][i]['name']);
+        optionItem.attr("value",""+data['sizes'][i]['id']);
         sizeList.append(optionItem);
         }
          
         for(let i=0; i<data['stock'].length; i++){
         var optionItem = $("<option></option>");
         optionItem.html(""+data['stock'][i]['name']);
+        optionItem.attr("value",""+data['stock'][i]['id']);
         stockList.append(optionItem);
         }
         
         for(let i=0; i<data['frame'].length; i++){
         var optionItem = $("<option></option>");
         optionItem.html(""+data['frame'][i]['name']);
+        optionItem.attr("value",""+data['frame'][i]['id']);
         frameList.append(optionItem);
         }
         

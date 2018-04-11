@@ -114,11 +114,13 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                        <h4 class="modal-title">Print Favorites</h4>
                        </div>
+                       <form action="order.php" method="POST">
               <div class="modal-body">
                            <?php $i = 0; ?>
                            <?php  foreach($_SESSION['imageFavList'] as $row){ ?>
                         <div class="float-right">
-                           <form class="total_Prices">
+                         <!--<form action="order.php" method="POST" class="total_Prices">-->
+                         <div class="total_Prices">
                                <table>
                             <tr>
                               <td>
@@ -128,22 +130,22 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                         <div class="float-right">
                                <div class="float-left">
                                <label for="id_select">Size: </label>
-                               <div class="md-frm pull-right"><select id="id_select" name="size" class="sizeDropdown printSpecs"></select></div>
+                               <div class="md-frm pull-right"><select id="id_select" name="size<?php echo $i; ?>" class="sizeDropdown printSpecs"></select></div>
                                </div>
                                
                                <div class="float-left">
                                <label for="id_select2">Stock: </label>
-                               <div class="md-frm pull-right"><select id="id_select2" name="size" class="stockDropdown printSpecs"></select></div>
+                               <div class="md-frm pull-right"><select id="id_select2" name="stock<?php echo $i; ?>" class="stockDropdown printSpecs"></select></div>
                                </div>
                                
                                <div class="float-left">
                                <label for="id_select3">Frame Color: </label>
-                               <div class="md-frm pull-right"><select id="id_select3" name="size" class="frameDropdown printSpecs"></select></div>
+                               <div class="md-frm pull-right"><select id="id_select3" name="frame<?php echo $i; ?>" class="frameDropdown printSpecs"></select></div>
                                </div>
                                
                                <div class="float-left">
                                <label for="id_inp">Quantity: </label>
-                               <div class="md-frm pull-right"><input class="printSpecs" id="id_inp<?php echo $i; ?>" title="Enter a quantity to see the price!" type="number" min="0" placeholder="0"></div>
+                               <div class="md-frm pull-right"><input class="printSpecs" name="id_inp<?php echo $i; ?>" id="id_inp<?php echo $i; ?>" title="Enter a quantity to see the price!" type="number" min="0" placeholder="0"></div>
                                </div>
                         </div>
                                </td>
@@ -153,27 +155,28 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                                </td>
                      
                             </tr>
+                            </div>
                             </table>
-                           </form>
                             
                            <hr>
                        </div>
                        <?php $i++; } ?>
+                    </div>    
                        <div class="modal-footer">
-                           <form class="final prices">
                                <label for="total_p">Subtotal: </label>
                                $  <input id="total_p"  type="number" readonly="readonly" value="0"><br>
-                               <input id="stand" type="radio" name="shipping" value="standard" checked="checked"><span id='standardShipping'></span> <br>
+                               <input id="stand" type="radio" name="shipping" value="standard" checked="checked"><span id='standardShipping'></span>
                                <input id="expr" type="radio" name="shipping" value="express"><span id='expressShipping'></span> <br>
                                <label for="total_shp">Shipping Cost: </label>
                                $  <input id="total_shp"  type="number" readonly="readonly" value="5"><br>
                                <label for="total_shhp">Grand Total: </label>
                                $  <input id="total_shhp"  type="number" readonly="readonly" value="0"><br>
-                           </form>
-                           
-                           <button type="button" class="btn-lg btn-success" data-dismiss="modal">Order</button>
+                           <button type="submit" class="btn-lg btn-success">Order</button>
                      </div>
-               </div>
+                     
+                 </form>
+                 
+              
            </div>
     </div>
 </html>
