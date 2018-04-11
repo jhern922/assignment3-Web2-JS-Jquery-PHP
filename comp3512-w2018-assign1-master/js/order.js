@@ -15,13 +15,13 @@ $(function(){
         }
         
         for(let count=0; count<data['stock'].length; count++){
-            if(data['stock'][count]['id'] == sizeID){
+            if(data['stock'][count]['id'] == stockID){
                 $('#stockVal'+i).html(data['stock'][count]['name']);
             }
         }
         
         for(let count=0; count<data['frame'].length; count++){
-            if(data['frame'][count]['id'] == sizeID){
+            if(data['frame'][count]['id'] == frameID){
                 $('#frameVal'+i).html(data['frame'][count]['name']);
             }
         }
