@@ -41,8 +41,8 @@ $(function(){
         alert("Oooops something wrong happened to the retrieval of JSON from " + url);
     });
     
-    $('.total_Prices').each(function(i, obj) { //changes on dropdown doesn't fire up change event
-        $(this).find('#id_inp','#id_select','#id_select2','#id_select3').change(function() { //waits until the quantity is changed before the calculation starts
+    $('.total_Prices').each(function(i, obj) { 
+        $(this).find('.printSpecs').change(function() { //instead of id '#id_inp' change it will be everything
             var standard;
             var express;
             var finalShip;
@@ -72,7 +72,8 @@ $(function(){
             frameIndex = frameIndex - (i * frameLen);
             var frameCosts = frameOptions[frameIndex]['costs'];
             var framePrice = frameCosts[sizeIndex];
-            var quant =  $(this).val();
+            //var quant =  $(this).val();
+            var quant =  $('#id_inp').val();
             var orderItemTotal = ((Number(sizePrice) + Number(stockPrice) + Number(framePrice)) * Number(quant));
             var orderTotal = $('#total_price_amount'+i).val();
             

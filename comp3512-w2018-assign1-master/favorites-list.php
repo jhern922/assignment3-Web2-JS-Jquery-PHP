@@ -128,22 +128,22 @@ if(isset($_GET['removeAllPosts']) && ($_GET['removeAllPosts'] == 1)){
                         <div class="float-right">
                                <div class="float-left">
                                <label for="id_select">Size: </label>
-                               <div class="md-frm pull-right"><select id="id_select" name="size" class="sizeDropdown"></select></div>
+                               <div class="md-frm pull-right"><select id="id_select" name="size" class="sizeDropdown printSpecs"></select></div>
                                </div>
                                
                                <div class="float-left">
                                <label for="id_select2">Stock: </label>
-                               <div class="md-frm pull-right"><select id="id_select2" name="size" class="stockDropdown"></select></div>
+                               <div class="md-frm pull-right"><select id="id_select2" name="size" class="stockDropdown printSpecs"></select></div>
                                </div>
                                
                                <div class="float-left">
                                <label for="id_select3">Frame Color: </label>
-                               <div class="md-frm pull-right"><select id="id_select3" name="size" class="frameDropdown"></select></div>
+                               <div class="md-frm pull-right"><select id="id_select3" name="size" class="frameDropdown printSpecs"></select></div>
                                </div>
                                
                                <div class="float-left">
                                <label for="id_inp">Quantity: </label>
-                               <div class="md-frm pull-right"><input id="id_inp" title="Enter a quantity to see the price!" type="number" min="0" placeholder="0"></div>
+                               <div class="md-frm pull-right"><input class="printSpecs" id="id_inp" title="Enter a quantity to see the price!" type="number" min="0" placeholder="0"></div>
                                </div>
                         </div>
                                </td>
