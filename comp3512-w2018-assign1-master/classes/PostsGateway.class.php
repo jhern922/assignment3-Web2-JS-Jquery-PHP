@@ -6,7 +6,7 @@ class PostsGateway extends TableDataGateway {
     }
     
     protected function getSelectStatement() {
-        return "SELECT Posts.PostID, ImageDetails.Title AS MainImageTitle, MainPostImage, Posts.UserID, CONCAT(Users.FirstName,' ',Users.LastName) AS FullName, Posts.Title, Posts.Message, PostTime, ImageDetails.Path
+        return "SELECT Posts.PostID, ImageDetails.Title AS MainImageTitle, MainPostImage, Posts.UserID, CONCAT(Users.FirstName,' ',Users.LastName) AS FullName, Posts.Title, Posts.Message, PostTime, ImageDetails.ImageID, ImageDetails.Path
         FROM Posts 
         INNER JOIN PostImages ON  PostImages.PostID = Posts.PostID
         INNER JOIN ImageDetails ON PostImages.ImageID = ImageDetails.ImageID

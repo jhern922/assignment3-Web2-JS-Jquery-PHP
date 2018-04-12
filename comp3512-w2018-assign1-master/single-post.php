@@ -1,7 +1,7 @@
 <?php
     include 'classes/postFavorite.class.php';
-    //session_start();
     include 'includes/config.inc.php';
+    include 'includes/favoriteListFunctions.inc.php';
     $postsDB = new PostsGateway($connection);
     if(!isset($_COOKIE['Success'])) { header("location: login.php"); } 
     else if(!isset($_GET['id']) || empty($_GET['id']))
@@ -21,7 +21,7 @@
        }
        if(isset($_GET['favorite']) && !empty($_GET['favorite']) && $_GET['favorite'] == 1)
        {
-          $itemAlreadyFavorited = checkItem('postFavList', $row['ImageID']);
+          $itemAlreadyFavorited = checkItem('postFavList', $row['PostID']);
           if(!$itemAlreadyFavorited)
           {
            array_push($_SESSION['postFavList'], array('ID'=>$_GET['id'],'Title'=>$row['Title'],'Path'=>$row['Path']));
@@ -99,7 +99,7 @@
     </div><!-- Carousel end -->
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
-                              <a href="single-post.php?id=<?php echo $_GET['id'];?>&favorite=1"><button type='button' id='favItem' class='btn btn-default'><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
+                              <a href="single-post.php?id=<?php sleep(3); echo $_GET['id'];?>&favorite=1"><button type='button' id='favItem' class='btn btn-default'><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button></a>
                             </div>
                             <div class="btn-group" role="group">
                                 <button type="button" id='futureBtn'  class="btn btn-default"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>
